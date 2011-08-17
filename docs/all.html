@@ -183,6 +183,50 @@ jquery-1.6.2.js</p>
 <p>we save a lot of roundtrips and asynchronouse handling by using
 require.js</p>
 </div>
+<div class="section" id="a-note-on-tutorial-driven-development">
+<h1>a note on Tutorial Driven Development</h1>
+<p>today I decided to investigate some tools like requirejs...</p>
+<p>but it always happens to me that at the first stages I'm getting
+huge amounts of information that I don't record anywhere.</p>
+<p>then later I forget how I did them, where I find them and worst
+if I have to explain to someone else what I learned it's hard
+to remember everything or the steps I did, the little details and
+so on.</p>
+<p>so this time I decided to do something that I thought when started
+to research, there is a place where I have to write something of
+what I do at the precise moment I made it work, and that is the
+commit message of my VCS.</p>
+<p>at that point I still remember what I did, where I got the stuff
+I included (I even still have the tabs open in my browser) and
+better than that, if I write a descriptive commit not only I have
+a nice step by step guide but it's associated with the changes I
+did in the repository.</p>
+<p>on top of that it's really simple to automate generating nice
+documentation from this, in this commit I'm importing a small
+script that process the git commits that have a body and creates
+a restructured text file for each of the commits in an output
+folder.</p>
+<p>after this I convert the numerated &quot;chapters&quot; with rst2html and
+a really cool css from:</p>
+<p><a class="reference external" href="http://kevinburke.bitbucket.org/markdowncss">http://kevinburke.bitbucket.org/markdowncss</a></p>
+<p>and I get automatically beautiful static documentation.</p>
+<p>the steps to generate the documentation right now are:</p>
+<pre class="literal-block">
+git log --reverse --format=&quot;%f.rst%n%s%n%b%n%%-%%-%%-%%&quot; | python repo2doc.py
+cd docs
+rm all.rst
+cat *.rst &gt; all.rst
+rst2html --stylesheet-path=markdown.css all.rst &gt; all.html
+</pre>
+<div class="section" id="stuff-to-refine">
+<h2>stuff to refine</h2>
+<p>a better workflow for Tutorial Driven Development with something
+like a branch for each chapter or something like that.</p>
+<p>this is all for now, if I keep improving this guide I just have
+to run the script again to get the new version of the document.</p>
+<p>happy tutDD (TDD is already taken ;)</p>
+</div>
+</div>
 </div>
 </body>
 </html>
